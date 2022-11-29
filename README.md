@@ -36,7 +36,7 @@ yarn start:dev
 Reconstruir la base de datos con la semilla
 
 ```bash
-http://localhost:3000/api/v2/seed
+http://localhost:3001/api/seed
 ```
 
 ## Stack usado
