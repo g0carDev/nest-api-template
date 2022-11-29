@@ -1,0 +1,13 @@
+version: '3'
+
+services:
+  db:
+    image: mongo:5
+    container_name: mongo-pomos
+    restart: always
+    ports:
+      - "27017:27017"
+    environment:
+      MONGODB_DATABSE: ${DB_NAME}
+    volumes:
+      - ./mongo:/data/db

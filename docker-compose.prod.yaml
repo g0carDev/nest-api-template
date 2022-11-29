@@ -1,0 +1,32 @@
+version: '3'
+
+services:
+  nest-pomos:
+    depends_on:
+      - db
+    build: 
+      context: .
+      dockerfile: Dockerfile
+    image: docker-pomos
+    container_name: nest-pomos
+    restart: always # reiniciar el contenedor si se detiene
+    ports:
+      - "${PORT}:${PORT}"
+    # working_dir: /var/www/pokedex
+    environment:
+      MONGODB_URI: ${MONGODB_URI}
+      PORT: ${PORT}
+      DEFAULT_LIMIT: ${DEFAULT_LIMIT}
+    # volumes:
+    #   - ./:/var/www/pokedex
+
+  db:
+    image: mongo:5
+    restart: always
+    container_name: mongo-pomos
+    ports:
+      - "27017:27017"
+    environment:
+      MONGODB_DATABSE: ${DB_NAME}
+    volumes:
+      - ./mongo:/data/db
